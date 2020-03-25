@@ -1,0 +1,31 @@
+{
+  "name": "packagecompression",
+  "version": "1.0.0",
+  "description": "Compress files into zip File; Generate diff file",
+  "main": "index.js",
+  "scripts": {
+    "compress": "node ./build/compress.js",
+    "diff": "node ./build/diff.js",
+    "patch": "node ./build/patch.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijing233/PackageCompression.git"
+  },
+  "keywords": [
+    "compression",
+    "diff",
+    "patch"
+  ],
+  "author": "lijing1@ushareit.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lijing233/PackageCompression/issues"
+  },
+  "homepage": "https://github.com/lijing233/PackageCompression#readme",
+  "dependencies": {
+    "archiver": "^3.1.1",
+    "bsdiff-nodejs": "^2.2.0"
+  }
+}
