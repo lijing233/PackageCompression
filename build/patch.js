@@ -16,5 +16,5 @@ async function asyncCall() {
         console.log('patch:' + String(result).padStart(4) + '%');
     });
 }
-  
+
 asyncCall();

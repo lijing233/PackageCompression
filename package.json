@@ -33,6 +33,6 @@
   "compress": {
     "zipBasePath": "./dist",
     "zipOutputPath": "./package",
-    "zipName": "test"
+    "zipName": "testlijing"
   }
 }

@@ -5,7 +5,7 @@ const path = require("path");
 const oldFile = path.join(__dirname, '../package/dist1.zip');
 const newFile = path.join(__dirname, '../package/dist2.zip');
 const patchFile = path.join(__dirname, '../package/patch');
-const generatedFile = path.join(__dirname, '../package/generate.zip');
+// const generatedFile = path.join(__dirname, '../package/generate.zip');
 
 async function asyncCall() {
     await bsdiff.diff(oldFile, newFile, patchFile, function (result) {
@@ -16,5 +16,5 @@ async function asyncCall() {
     //     console.log('patch:' + String(result).padStart(4) + '%');
     // });
 }
-  
+
 asyncCall();
