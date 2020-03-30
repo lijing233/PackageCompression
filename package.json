@@ -10,7 +10,8 @@
     "test:bin": "node ./bin/compress.bin.js"
   },
   "bin": {
-    "compress": "./bin/compress.bin.js"
+    "compress": "./bin/compress.bin.js",
+    "diff": "./bin/diff.bin.js"
   },
   "repository": {
     "type": "git",
