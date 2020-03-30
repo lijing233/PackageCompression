@@ -1,6 +1,6 @@
 {
   "name": "packagecompression",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Compress files into zip File; Generate diff file",
   "main": "index.js",
   "scripts": {

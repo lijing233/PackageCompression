@@ -12,7 +12,7 @@ const compress = require("../build/compress.js");
 let zipName = 'dist';
 let zipBasePath = 'dist';
 let zipOutputPath = 'dist';
-let zipVersion;
+let zipVersion = process.env.npm_package_version;
 
 if (process.env.npm_config_usePackageConfig) {
   // 使用package.json中compress配置
@@ -30,6 +30,8 @@ if (process.env.npm_config_usePackageConfig) {
   zipVersion = process.env.npm_package_compress_zipVersion || process.env.npm_package_version;
 
 }
+
+console.log(zipVersion);
 
 fs.exists(zipBasePath, function (exists) {
   if (exists) {
