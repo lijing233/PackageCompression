@@ -7,7 +7,8 @@
     "compress": "node ./build/compress.js",
     "diff": "node ./build/diff.js",
     "patch": "node ./build/patch.js",
-    "test:bin": "node ./bin/compress.bin.js"
+    "test:bin": "node ./bin/compress.bin.js",
+    "test:diff": "node ./bin/diff.bin.js"
   },
   "bin": {
     "compress": "./bin/compress.bin.js",

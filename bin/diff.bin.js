@@ -1,5 +1,6 @@
 const fs = require("fs");
-const diff = require("../build/diff");
+const path = require("path");
+// const diff = require("../build/diff");
 
 
 
@@ -19,6 +20,7 @@ if (oldFileName && newFileName) {
   const diffFilePath = diffFileName ? packageFolder + '/' + diffFileName : packageFolder + '/diff_' + oldFileName + '_' + newFileName;
   diff(oldFilePath, newFilePath, diffFilePath);
 } else {
+  console.log('000000000000000000');
   const zips = fs.readdirSync(packageFolder).filter(file => {
     return path.extname(file) === ".zip";
   });
@@ -29,6 +31,10 @@ if (oldFileName && newFileName) {
       fs.statSync(packageFolder + "/" + b).birthtimeMs
     );
   });
+
+  console.log('---------------', packageFolder + "/" + zips[1]);
+  console.log('---------------', packageFolder + "/" + zips[0]);
+  console.log('---------------', packageFolder + "/" + "diff_" + fileVersion(zips[1]) + "_" + fileVersion(zips[0]));
 
   diff(
     packageFolder + "/" + zips[1],
