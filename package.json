@@ -1,13 +1,16 @@
 {
   "name": "packagecompression",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compress files into zip File; Generate diff file",
   "main": "index.js",
   "scripts": {
     "compress": "node ./build/compress.js",
     "diff": "node ./build/diff.js",
     "patch": "node ./build/patch.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:bin": "node ./bin/compress.bin.js"
+  },
+  "bin": {
+    "compress": "./bin/compress.bin.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +28,11 @@
   },
   "homepage": "https://github.com/lijing233/PackageCompression#readme",
   "dependencies": {
-    "archiver": "^3.1.1",
-    "bsdiff-nodejs": "^2.2.0"
+    "archiver": "^3.1.1"
+  },
+  "myconfig": {
+    "zipName": "111",
+    "zipBasePath": "./dist",
+    "zipOutputPath": "./package"
   }
 }
