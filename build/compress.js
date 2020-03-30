@@ -3,7 +3,7 @@ const fs = require("fs");
 const archiver = require("archiver");
 const path = require("path");
 
-module.exports = (zipBasePath, zipOutputPath, zipName) => {
+module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion) => {
   console.log('zipBasePath :', zipBasePath);
   console.log('zipOutputPath :', zipOutputPath);
   console.log('zipName :', zipName);
@@ -13,7 +13,7 @@ module.exports = (zipBasePath, zipOutputPath, zipName) => {
   }
 
   // create a file to stream archive data to.
-  var output = fs.createWriteStream(zipOutputPath + '/' + zipName + ".zip");
+  var output = fs.createWriteStream(zipOutputPath + '/' + zipName + '_v' + zipVersion + ".zip");
   var archive = archiver("zip", {
     zlib: {
       level: 9

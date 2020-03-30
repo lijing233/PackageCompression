@@ -1,24 +1,41 @@
 #!/usr/bin/env node
 
 // console.log('ddddddd', process.argv);
+// console.log(process.env.npm_config_usePackageConfig);
 // const argv_original = JSON.parse(process.env.npm_config_argv);
 // console.log(argv_original);
 // console.log(argv_original.remain);
 
 const fs = require("fs");
-const compress = require("../build/compress.js")
+const compress = require("../build/compress.js");
 
-console.log(process.env.npm_package_myconfig_zipName);
-console.log(process.env.npm_package_myconfig_zipBasePath);
+let zipName = 'dist';
+let zipBasePath = 'dist';
+let zipOutputPath = 'dist';
+let zipVersion;
 
-const zipName = process.env.npm_package_myconfig_zipName || 'dist';
-const zipBasePath = process.env.npm_package_myconfig_zipBasePath || './dist';
-const zipOutputPath = process.env.npm_package_myconfig_zipOutputPath || './package';
+if (process.env.npm_config_usePackageConfig) {
+  // 使用package.json中compress配置
+  zipName = process.env.npm_config_zipName || 'dist';
+  zipBasePath = process.env.npm_config_zipBasePath || './dist';
+  zipOutputPath = process.env.npm_config_zipOutputPath || './package';
+  zipVersion = process.env.npm_config_zipVersion || process.env.npm_package_version;
 
-fs.exists(zipBasePath, function(exists) {
+  
+} else {
+  // 使用命令行中传入参数
+  zipName = process.env.npm_package_compress_zipName || 'dist';
+  zipBasePath = process.env.npm_package_compress_zipBasePath || './dist';
+  zipOutputPath = process.env.npm_package_compress_zipOutputPath || './package';
+  zipVersion = process.env.npm_package_compress_zipVersion || process.env.npm_package_version;
+
+}
+
+fs.exists(zipBasePath, function (exists) {
   if (exists) {
-    compress(zipBasePath, zipOutputPath, zipName)
+    compress(zipBasePath, zipOutputPath, zipName, zipVersion)
   } else {
     console.log('需要压缩的文件或文件夹不存在！');
+    process.exit();
   }
 });
