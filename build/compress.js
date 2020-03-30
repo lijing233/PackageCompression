@@ -4,12 +4,16 @@ const archiver = require("archiver");
 const path = require("path");
 
 module.exports = (zipBasePath, zipOutputPath, zipName) => {
+  console.log('zipBasePath :', zipBasePath);
+  console.log('zipOutputPath :', zipOutputPath);
+  console.log('zipName :', zipName);
+
   if (!fs.existsSync(zipOutputPath)) {
     fs.mkdirSync(zipOutputPath);
   }
 
   // create a file to stream archive data to.
-  var output = fs.createWriteStream(zipOutputPath + '/' + + zipName + ".zip");
+  var output = fs.createWriteStream(zipOutputPath + '/' + zipName + ".zip");
   var archive = archiver("zip", {
     zlib: {
       level: 9
@@ -51,7 +55,7 @@ module.exports = (zipBasePath, zipOutputPath, zipName) => {
   archive.pipe(output);
 
 
-  archive.directory(path.resolve(__dirname, zipBasePath), false);
+  archive.directory(zipBasePath, false);
 
   // finalize the archive (ie we are done appending files but streams have to finish yet)
   // 'close', 'end' or 'finish' may be fired right after calling this method so register to them beforehand

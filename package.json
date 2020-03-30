@@ -1,6 +1,6 @@
 {
   "name": "packagecompression",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Compress files into zip File; Generate diff file",
   "main": "index.js",
   "scripts": {
@@ -29,10 +29,5 @@
   "homepage": "https://github.com/lijing233/PackageCompression#readme",
   "dependencies": {
     "archiver": "^3.1.1"
-  },
-  "myconfig": {
-    "zipName": "111",
-    "zipBasePath": "./dist",
-    "zipOutputPath": "./package"
   }
 }
