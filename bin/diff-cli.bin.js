@@ -1,4 +1,4 @@
-#!/usr/bin/env nod
+#!/usr/bin/env node
 const { program } = require('commander');
 const inquirer = require('inquirer');
 const pkg = require('../package.json');
