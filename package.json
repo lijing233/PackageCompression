@@ -1,6 +1,6 @@
 {
   "name": "packagecompression",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Compress files into zip File; Generate diff file",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "bin": {
     "compress": "./bin/compress.bin.js",
     "diff": "./bin/diff.bin.js",
-    "patch": "./bin/diff.bin.js"
+    "patch": "./bin/patch.bin.js"
   },
   "repository": {
     "type": "git",
