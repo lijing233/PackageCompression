@@ -2,6 +2,7 @@
 const fs = require("fs");
 const archiver = require("archiver");
 const path = require("path");
+const utils = require('../common/utils');
 
 module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion) => {
   console.log('zipBasePath :', zipBasePath);
@@ -27,6 +28,11 @@ module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion) => {
     console.log(
       "archiver has been finalized and the output file descriptor has closed."
     );
+
+    utils.log.info('Success compress the folder to .zip file!');
+    utils.log.info('Flie Path: ' + zipOutputPath + '/' + zipName + '_v' + zipVersion + ".zip");
+
+    // TODO: 上传s3
   });
 
   // This event is fired when the data source is drained no matter what was the data source.
