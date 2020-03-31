@@ -50,11 +50,11 @@ compress --zipBasePath=./dist --zipOutputPath=./package --zipName=test --zipVers
 
 ### 3.参数
 
-| 参数          | 说明                   | 类型   | 可选值 |        默认值         |
-| ------------- | ---------------------- | ------ | :----: | :-------------------: |
-| zipBasePath   | 需要压缩的文件         | string |   -    |       './dist'        |
-| zipOutputPath | 存放压缩文件位置       | string |   -    |      './package'      |
-| zipName       | 压缩包名称             | string |        |        'dist'         |
+| 参数       | 说明                   | 类型   | 可选值 |        默认值         |
+| ---------- | ---------------------- | ------ | :----: | :-------------------: |
+| basePath   | 需要压缩的文件         | string |   -    |       './dist'        |
+| outputPath | 存放压缩文件位置       | string |   -    |      './package'      |
+| zipName    | 压缩包名称             | string |        |        'dist'         |
 | zipVersion    | 版本（将放入文件名中） | string |        | package.json中version |
 
 

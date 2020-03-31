@@ -36,9 +36,10 @@
     "bsdiff-nodejs": "^2.2.0"
   },
   "compress": {
-    "zipBasePath": "./dist",
-    "zipOutputPath": "./package",
-    "zipName": "ttt"
+    "basePath": "./dist",
+    "outputPath": "./package",
+    "zipName": "ttt",
+    "zipVersion": ""
   },
   "diff": {
     "basePath": "./package",
