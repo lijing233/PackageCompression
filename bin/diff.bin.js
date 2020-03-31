@@ -47,13 +47,19 @@ if (oldFileName && newFileName) {
   const zips = fs.readdirSync(basePath).filter(file => {
     return path.extname(file) === ".zip";
   });
+
+  console.log('zips', zips);
   zips.sort((a, b) => {
     //根据创建时间排序
+    console.log(fs.statSync(basePath + "/" + a).birthtimeMs);
+    console.log(fs.statSync(basePath + "/" + b).birthtimeMs);
+    console.log('--------');
     return (
-      -fs.statSync(basePath + "/" + a).birthtimeMs -
-      fs.statSync(basePath + "/" + b).birthtimeMs
+      fs.statSync(basePath + "/" + b).birthtimeMs -
+      fs.statSync(basePath + "/" + a).birthtimeMs
     );
   });
+  console.log(zips);
 
   console.log('------- oldFilePath --------', basePath + "/" + zips[1]);
   console.log('------- newFilePath --------', basePath + "/" + zips[0]);
