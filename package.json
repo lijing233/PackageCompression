@@ -7,7 +7,7 @@
     "compress": "node ./build/compress.js",
     "diff": "node ./build/diff.js",
     "patch": "node ./build/patch.js",
-    "test:bin": "node ./bin/compress.bin.js",
+    "test:zip": "node ./bin/compress.bin.js",
     "test:diff": "node ./bin/diff.bin.js"
   },
   "bin": {
@@ -30,11 +30,18 @@
   },
   "homepage": "https://github.com/lijing233/PackageCompression#readme",
   "dependencies": {
-    "archiver": "^3.1.1"
+    "archiver": "^3.1.1",
+    "bsdiff-nodejs": "^2.2.0"
   },
   "compress": {
     "zipBasePath": "./dist",
     "zipOutputPath": "./package",
-    "zipName": "testlijing"
+    "zipName": "ttt"
+  },
+  "diff": {
+    "basePath": "./package",
+    "oldFileName": "dist_v1.0.6.zip",
+    "newFileName": "dist_v1.0.7.zip",
+    "diffFileName": "ttt"
   }
 }
