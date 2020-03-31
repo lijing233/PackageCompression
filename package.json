@@ -1,6 +1,6 @@
 {
   "name": "packagecompression",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Compress files into zip File; Generate diff file",
   "main": "index.js",
   "scripts": {
@@ -8,11 +8,13 @@
     "diff": "node ./build/diff.js",
     "patch": "node ./build/patch.js",
     "test:zip": "node ./bin/compress.bin.js",
-    "test:diff": "node ./bin/diff.bin.js"
+    "test:diff": "node ./bin/diff.bin.js",
+    "test:patch": "node ./bin/patch.bin.js"
   },
   "bin": {
     "compress": "./bin/compress.bin.js",
-    "diff": "./bin/diff.bin.js"
+    "diff": "./bin/diff.bin.js",
+    "patch": "./bin/diff.bin.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,12 @@
     "basePath": "./package",
     "oldFileName": "dist_v1.0.6.zip",
     "newFileName": "dist_v1.0.7.zip",
-    "diffFileName": "ttt"
+    "diffFileName": ""
+  },
+  "patch": {
+    "basePath": "./package",
+    "baseFileName": "dist_v1.0.6.zip",
+    "diffFileName": "diff_1.0.6_1.0.7",
+    "patchFileName": "new_package.zip"
   }
 }

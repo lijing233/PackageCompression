@@ -4,9 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const diff = require("../build/diff");
 
-const packageFolder = process.env.npm_config_basePath || './package';
-
-
 let oldFileName = "";
 let newFileName = "";
 let diffFileName = "";
@@ -36,9 +33,9 @@ if (!fs.existsSync(basePath)) {
 if (oldFileName && newFileName) {
   console.log('------ user input config ------');
   
-  const oldFilePath = packageFolder + '/' + oldFileName;
-  const newFilePath = packageFolder + '/' + newFileName;
-  const diffFilePath = diffFileName ? packageFolder + '/' + diffFileName : packageFolder + '/diff_' + getVersionStr(oldFileName) + '_' + getVersionStr(newFileName);
+  const oldFilePath = basePath + '/' + oldFileName;
+  const newFilePath = basePath + '/' + newFileName;
+  const diffFilePath = diffFileName ? basePath + '/' + diffFileName : basePath + '/diff_' + getVersionStr(oldFileName) + '_' + getVersionStr(newFileName);
 
   console.log('---------  oldFilePath  --------', oldFilePath);
   console.log('---------  newFilePath  --------', newFilePath);
@@ -47,25 +44,25 @@ if (oldFileName && newFileName) {
   diff(oldFilePath, newFilePath, diffFilePath);
 } else {
   console.log('------ default config ------');
-  const zips = fs.readdirSync(packageFolder).filter(file => {
+  const zips = fs.readdirSync(basePath).filter(file => {
     return path.extname(file) === ".zip";
   });
   zips.sort((a, b) => {
     //根据创建时间排序
     return (
-      -fs.statSync(packageFolder + "/" + a).birthtimeMs -
-      fs.statSync(packageFolder + "/" + b).birthtimeMs
+      -fs.statSync(basePath + "/" + a).birthtimeMs -
+      fs.statSync(basePath + "/" + b).birthtimeMs
     );
   });
 
-  console.log('------- oldFilePath --------', packageFolder + "/" + zips[1]);
-  console.log('------- newFilePath --------', packageFolder + "/" + zips[0]);
-  console.log('------- diffFilePath --------', packageFolder + "/" + "diff_" + fileVersion(zips[1]) + "_" + fileVersion(zips[0]));
+  console.log('------- oldFilePath --------', basePath + "/" + zips[1]);
+  console.log('------- newFilePath --------', basePath + "/" + zips[0]);
+  console.log('------- diffFilePath --------', basePath + "/" + "diff_" + fileVersion(zips[1]) + "_" + fileVersion(zips[0]));
 
   diff(
-    packageFolder + "/" + zips[1],
-    packageFolder + "/" + zips[0],
-    packageFolder +
+    basePath + "/" + zips[1],
+    basePath + "/" + zips[0],
+    basePath +
       "/" +
       "diff_" +
       fileVersion(zips[1]) +
