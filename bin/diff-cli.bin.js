@@ -7,7 +7,8 @@ const path = require("path");
 const utils = require('../common/utils');
 
 const compress = require("../build/compress.js");
-const diff = require("../build/diff");
+const diff = require("../build/diff.js");
+const patch = require("../build/patch.js");
 
   program
     .version(pkg.version)
@@ -95,6 +96,57 @@ const diff = require("../build/diff");
         const newFilePath = basePath + '/' + answer.newFile;
         const outputPath = basePath + '/diff_' + utils.getVersionStr(answer.baseFile) + '_' + utils.getVersionStr(answer.newFile);
         diff(baseFilePath, newFilePath, outputPath);
+      })
+
+    })
+
+  program
+    .command('patch')
+    .description('use base file and diff file, to output the package')
+    .action(() => {
+      const basePath = './package';
+      const zips = fs.readdirSync(basePath).filter(file => {
+        return path.extname(file) === ".zip";
+      });
+      const diffFileList = fs.readdirSync(basePath).filter(file => {
+        return path.extname(file) !== ".zip";
+      });
+      console.log('diffFileList :', diffFileList);
+      inquirer.prompt([
+        {
+          name: 'baseFile',
+          type: 'list',
+          choices: zips,
+          message: 'Choose the base file name'
+        }, {
+          name: 'diffFile',
+          type: 'list',
+          choices: diffFileList,
+          message: 'Choose the diff file name'
+        }, {
+          name: 'outputName',
+          type: 'input',
+          message: 'Input the output file name'
+        }
+      ]).then(answer => {
+        console.log('patch-config', answer);
+        if (!answer.baseFile || !answer.diffFile || !answer.outputName) {
+          utils.log.error('请输入完成参数!', true)
+        }
+
+
+        const baseFilePath = basePath + '/' + answer.baseFile;
+        const diffFilePath = basePath + '/' + answer.diffFile;
+        const outputPath = basePath + '/patch_' + answer.outputName + '.zip';
+
+        if (!fs.existsSync(baseFilePath)) {
+          utils.log.error('请输入正确的baseFile!', true)
+        }
+
+        if (!fs.existsSync(diffFilePath)) {
+          utils.log.error('请输入正确的diffFile!', true)
+        }
+        patch(baseFilePath, outputPath, diffFilePath);
       })
 
     })

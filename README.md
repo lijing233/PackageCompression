@@ -19,6 +19,30 @@ npm install –global –production windows-build-tools
 
 
 
+## diff-cli (选项引导命令)
+
+### 1.compress
+
+```
+diff-cli compress
+```
+
+### 2.diff
+
+```
+diff-cli diff
+```
+
+### 3.patch
+
+```
+diff-cli patch
+```
+
+
+
+
+
 ## compress（压缩）
 
 全局安装后使用compress命令
