@@ -29,11 +29,15 @@ diff-cli compress
 
 ### 2.diff
 
+默认目标文件夹 ./package
+
 ```
 diff-cli diff
 ```
 
 ### 3.patch
+
+默认目标文件夹 ./package
 
 ```
 diff-cli patch
