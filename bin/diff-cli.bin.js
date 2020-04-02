@@ -94,7 +94,7 @@ const patch = require("../build/patch.js");
         console.log('diff-config', answer);
         const baseFilePath = basePath + '/' + answer.baseFile;
         const newFilePath = basePath + '/' + answer.newFile;
-        const outputPath = basePath + '/diff_' + utils.getVersionStr(answer.baseFile) + '_' + utils.getVersionStr(answer.newFile);
+        const outputPath = basePath + '/diff_' + utils.getVersionStr(answer.baseFile) + '_' + utils.getVersionStr(answer.newFile) + '.bin';
         diff(baseFilePath, newFilePath, outputPath);
       })
 
