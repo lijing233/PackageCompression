@@ -28,13 +28,15 @@ function copy(basePath, outputPath, baseUrl) {
     if (stats.isFile()) {
       // md5
       const hash = crypto.createHash('md5');
-      const ext = path.extname(file);
+      // 扩展名
+      // const ext = path.extname(file);
+      
       const md5 = hash.update(baseUrl + file).digest("hex");
-      const newName = md5 + ext;
-      console.log(chalk.yellow('md5 : '), chalk.greenBright(md5), chalk.yellow('  path: ') , chalk.greenBright(baseUrl + newName));
+      // const newName = md5 + ext;
+      console.log(chalk.yellow('md5 : '), chalk.greenBright(md5), chalk.yellow('  path: ') , chalk.greenBright(baseUrl + file));
 
       var dist = basePath + '/' + file;
-      var distCopy = outputPath + '/' + newName;
+      var distCopy = outputPath + '/' + md5;
 
       // 创建读取流
       readable = fs.createReadStream(dist);
