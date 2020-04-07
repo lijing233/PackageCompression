@@ -28,7 +28,7 @@ function copy(basePath, outputPath, baseUrl) {
       // md5
       const hash = crypto.createHash('md5');
       const md5 = hash.update(baseUrl + file).digest("hex");
-      console.log('md5 :', md5);
+      console.log('md5 :', md5, 'path: ' + baseUrl + file);
 
       var dist = basePath + '/' + file;
       var distCopy = outputPath + '/' + md5;
@@ -42,10 +42,11 @@ function copy(basePath, outputPath, baseUrl) {
     } else {
 
       var sonBase = basePath + '/' + file;
-      
+
       copy(
         sonBase,
-        outputPath
+        outputPath,
+        baseUrl
       )
     }
   })

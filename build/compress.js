@@ -4,7 +4,7 @@ const archiver = require("archiver");
 const path = require("path");
 const utils = require('../common/utils');
 
-module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion) => {
+module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion, callback) => {
   console.log('zipBasePath :', zipBasePath);
   console.log('zipOutputPath :', zipOutputPath);
   console.log('zipName :', zipName);
@@ -33,6 +33,11 @@ module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion) => {
     utils.log.info('Flie Path: ' + zipOutputPath + '/' + zipName + '_v' + zipVersion + ".zip");
 
     // TODO: 上传s3
+
+    // callback
+    if (callback && typeof callback === 'function') {
+      callback()
+    }
   });
 
   // This event is fired when the data source is drained no matter what was the data source.

@@ -9,7 +9,8 @@ const utils = require('../common/utils');
 const compress = require("../build/compress.js");
 const diff = require("../build/diff.js");
 const patch = require("../build/patch.js");
-const map = require("../build/map.js")
+const map = require("../build/map.js");
+const delDir = require("../build/deleteFiles.js")
 
   program
     .version(pkg.version)
@@ -180,17 +181,27 @@ const map = require("../build/map.js")
         }
       ]).then(answer => {
         if (answer.basePath && answer.baseUrl && answer.zipName && answer.version) {
+          // 生成复制文件夹
           map(
             answer.basePath,
             answer.baseUrl
           )
 
+          const callback = () => {
+            // 删除复制的文件夹
+            delDir(answer.basePath + '_copy')
+          }
+
+          // 对复制文件夹进行压缩并放入package文件夹中
           compress(
             answer.basePath + '_copy',
             './package',
             answer.zipName,
-            answer.version
+            answer.version,
+            callback
           )
+          
+          
         } else {
           utils.log.error('请输入完整的信息!', true)
         }
