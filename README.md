@@ -21,6 +21,29 @@ npm install –global –production windows-build-tools
 
 ## diff-cli (选项引导命令)
 
+### build
+
+将所有资源放入文件夹，并将文件名替换为线上地址md5格式并压缩生成.zip
+
+```
+diff-cli build
+```
+
+根据提示以此输入
+
+| 命令提示              | 默认值             |
+| --------------------- | ------------------ |
+| 1. 目标资源文件夹位置 | ./dist             |
+| 2. 线上资源路径       |                    |
+| 3. 活动code           | dist               |
+| 4. 版本号             | package.json版本号 |
+
+
+
+
+
+
+
 diff-cli使用了默认选项，可以更快的实现打包、差分、还原操作
 
 ### 1.compress

@@ -9,6 +9,7 @@ const utils = require('../common/utils');
 const compress = require("../build/compress.js");
 const diff = require("../build/diff.js");
 const patch = require("../build/patch.js");
+const map = require("../build/map.js")
 
   program
     .version(pkg.version)
@@ -149,6 +150,51 @@ const patch = require("../build/patch.js");
         patch(baseFilePath, outputPath, diffFilePath);
       })
 
+    })
+
+  program
+    .command('build')
+    .description('generate file map with url md5 string')
+    .action(() => {
+      inquirer.prompt([
+        {
+          name: 'basePath',
+          type: 'input',
+          default: './dist',
+          message: 'Input the folder path which you want to compress'
+        }, {
+          name: 'baseUrl',
+          type: 'input',
+          default: 'http://active.wshareit.com/2020/covid/',
+          message: 'Please enter the online path of the static resource'
+        }, {
+          name: 'zipName',
+          type: 'input',
+          default: 'dist',
+          message: 'Input the zipName file name'
+        }, {
+          name: 'version',
+          type: 'input',
+          default: process.env.npm_package_version,
+          message: 'Input the version'
+        }
+      ]).then(answer => {
+        if (answer.basePath && answer.baseUrl && answer.zipName && answer.version) {
+          map(
+            answer.basePath,
+            answer.baseUrl
+          )
+
+          compress(
+            answer.basePath + '_copy',
+            './package',
+            answer.zipName,
+            answer.version
+          )
+        } else {
+          utils.log.error('请输入完整的信息!', true)
+        }
+      })
     })
 
 

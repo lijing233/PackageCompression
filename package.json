@@ -1,6 +1,6 @@
 {
   "name": "packagecompression",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Compress files into zip File; Generate diff file",
   "main": "index.js",
   "scripts": {
@@ -12,13 +12,11 @@
     "test:patch": "node ./bin/patch.bin.js",
     "test:cli:compress": "node ./bin/diff-cli.bin.js compress",
     "test:cli:diff": "node ./bin/diff-cli.bin.js diff",
-    "test:cli:patch": "node ./bin/diff-cli.bin.js patch"
+    "test:cli:patch": "node ./bin/diff-cli.bin.js patch",
+    "test:cli:build": "node ./bin/diff-cli.bin.js build"
   },
   "bin": {
-    "diff-cli": "./bin/diff-cli.bin.js",
-    "compress": "./bin/compress.bin.js",
-    "diff": "./bin/diff.bin.js",
-    "patch": "./bin/patch.bin.js"
+    "diff-cli": "./bin/diff-cli.bin.js"
   },
   "repository": {
     "type": "git",
