@@ -181,15 +181,18 @@ const delDir = require("../build/deleteFiles.js")
         }
       ]).then(answer => {
         if (answer.basePath && answer.baseUrl && answer.zipName && answer.version) {
+          const copyRoot = answer.basePath + '_copy';
+
           // 生成复制文件夹
           map(
             answer.basePath,
-            answer.baseUrl
+            answer.baseUrl,
+            copyRoot
           )
 
           const callback = () => {
             // 删除复制的文件夹
-            delDir(answer.basePath + '_copy')
+            delDir(copyRoot)
           }
 
           // 对复制文件夹进行压缩并放入package文件夹中

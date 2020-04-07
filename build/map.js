@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require('crypto');
+const chalk = require('chalk');
 
 
 // function folderMap(dirPath) {
@@ -27,11 +28,13 @@ function copy(basePath, outputPath, baseUrl) {
     if (stats.isFile()) {
       // md5
       const hash = crypto.createHash('md5');
+      const ext = path.extname(file);
       const md5 = hash.update(baseUrl + file).digest("hex");
-      console.log('md5 :', md5, 'path: ' + baseUrl + file);
+      const newName = md5 + ext;
+      console.log(chalk.yellow('md5 : '), chalk.greenBright(md5), chalk.yellow('  path: ') , chalk.greenBright(baseUrl + newName));
 
       var dist = basePath + '/' + file;
-      var distCopy = outputPath + '/' + md5;
+      var distCopy = outputPath + '/' + newName;
 
       // 创建读取流
       readable = fs.createReadStream(dist);
@@ -52,9 +55,7 @@ function copy(basePath, outputPath, baseUrl) {
   })
 }
 
-module.exports = (root, baseUrl) => {
-
-  var copyRoot = root+ '_copy';
+module.exports = (root, baseUrl, copyRoot) => {
 
   if (!fs.existsSync(copyRoot)) {
     fs.mkdirSync(copyRoot);
