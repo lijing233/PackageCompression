@@ -14,7 +14,7 @@ module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion, callback) => 
   }
 
   // create a file to stream archive data to.
-  var output = fs.createWriteStream(zipOutputPath + '/' + zipName + '_v' + zipVersion + ".zip");
+  var output = fs.createWriteStream(zipOutputPath + '/' + zipName + '_' + zipVersion + ".zip");
   var archive = archiver("zip", {
     zlib: {
       level: 9
@@ -30,7 +30,7 @@ module.exports = (zipBasePath, zipOutputPath, zipName, zipVersion, callback) => 
     );
 
     utils.log.info('Success compress the folder to .zip file!');
-    utils.log.info('Flie Path: ' + zipOutputPath + '/' + zipName + '_v' + zipVersion + ".zip");
+    utils.log.info('Flie Path: ' + zipOutputPath + '/' + zipName + '_' + zipVersion + ".zip");
 
     // TODO: 上传s3
 

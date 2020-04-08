@@ -82,11 +82,11 @@ function fileVersion(filename) {
   // dist_v1.2.0.zip
   return path
     .basename(filename, ".zip")
-    .split("_v")
+    .split("_")
     .pop(); // 1.2.0
 }
 
 function getVersionStr(str) {
-  let res = str.match(/_v(\S*).zip/)[1];
- return res || str;
+  let res = str.match(/_(\S*).zip/)[1];
+  return res || str;
 }

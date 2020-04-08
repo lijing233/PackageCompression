@@ -20,7 +20,7 @@ log.info = function(msg) {
 
 // getVersionStr
 function getVersionStr(str) {
-  let res = str.match(/_v(\S*).zip/)[1];
+  let res = str.match(/_(\S*).zip/)[1];
  return res || str;
 }
 
