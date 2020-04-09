@@ -19,8 +19,11 @@ const chalk = require('chalk');
 //   }
 // }
 
+var myRoot = '';
+
 function copy(basePath, outputPath, baseUrl) {
   var folder = fs.readdirSync(basePath);
+
   folder.forEach(file => {
     var filePath = path.join(basePath, file);
     var stats = fs.statSync(filePath);
@@ -31,11 +34,17 @@ function copy(basePath, outputPath, baseUrl) {
       // 扩展名
       // const ext = path.extname(file);
       
-      const md5 = hash.update(baseUrl + file).digest("hex");
-      // const newName = md5 + ext;
-      console.log(chalk.yellow('md5 : '), chalk.greenBright(md5), chalk.yellow('  path: ') , chalk.greenBright(baseUrl + file));
-
+      // 资源原始地址
       var dist = basePath + '/' + file;
+
+      // 线上资源地址
+      var onlinePath = dist.replace(myRoot + '/', baseUrl);
+      
+      const md5 = hash.update(onlinePath).digest("hex");
+      // const newName = md5 + ext;
+      console.log(chalk.yellow('md5 : '), chalk.greenBright(md5), chalk.yellow('  path: ') , chalk.greenBright(onlinePath));
+
+      // 输出地址
       var distCopy = outputPath + '/' + md5;
 
       // 创建读取流
@@ -58,6 +67,7 @@ function copy(basePath, outputPath, baseUrl) {
 }
 
 module.exports = (root, baseUrl, copyRoot) => {
+  myRoot = root;
 
   if (!fs.existsSync(copyRoot)) {
     fs.mkdirSync(copyRoot);
