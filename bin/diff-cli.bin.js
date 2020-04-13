@@ -178,7 +178,12 @@ const delDir = require("../build/deleteFiles.js")
           type: 'input',
           default: process.env.npm_package_version,
           message: 'Input the version'
+        }, {
+          type: "confirm",
+          message: "compress and delete the copy folder",
+          name: "compress"
         }
+        
       ]).then(answer => {
         if (answer.basePath && answer.baseUrl && answer.zipName && answer.version) {
           const copyRoot = answer.basePath + '_copy';
@@ -190,19 +195,22 @@ const delDir = require("../build/deleteFiles.js")
             copyRoot
           )
 
-          const callback = () => {
-            // 删除复制的文件夹
-            delDir(copyRoot)
+          if (answer.compress) {
+            let callback = () => {
+              // 删除复制的文件夹
+              delDir(copyRoot)
+            }
+  
+            // 对复制文件夹进行压缩并放入package文件夹中
+            compress(
+              answer.basePath + '_copy',
+              './package',
+              answer.zipName,
+              answer.version,
+              callback
+            )
           }
 
-          // 对复制文件夹进行压缩并放入package文件夹中
-          compress(
-            answer.basePath + '_copy',
-            './package',
-            answer.zipName,
-            answer.version,
-            callback
-          )
           
           
         } else {
