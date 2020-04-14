@@ -5,7 +5,7 @@ Compress files into zip File;  Generate diff file
 
 ## 安装
 
-```
+```shell
 npm i -g packagecompression
 ```
 
@@ -13,7 +13,7 @@ npm i -g packagecompression
 
 **bsdiff-nodejs**   win环境需要安装环境
 
-```
+```shell
 npm install –global –production windows-build-tools
 ```
 
@@ -31,22 +31,63 @@ diff-cli build
 
 根据提示以此输入
 
-| 命令提示              | 默认值             |
-| --------------------- | ------------------ |
-| 1. 目标资源文件夹位置 | ./dist             |
-| 2. 线上资源路径       |                    |
-| 3. 活动code           | dist               |
-| 4. 版本号             | package.json版本号 |
+| 命令提示                   | 默认值                                 | 备注                      |
+| -------------------------- | -------------------------------------- | ------------------------- |
+| 1. 目标资源文件夹位置      | ./dist                                 | 请输入当前位置的相对路径  |
+| 2. 线上资源路径            | http://active.wshareit.com/2020/covid/ | 格式与默认值一致，结尾带/ |
+| 3. 活动code                | dist                                   | 活动id                    |
+| 4. 版本号                  | package.json版本号                     | 版本号                    |
+| 5.是否打包并删除复制文件夹 | y/n                                    |                           |
+
+如果除了业务代码，需要添加其他插件，请在选项  `5、是否打包并删除复制文件夹`  选择   `n`  , 将所需资源手动添加到一起后再进行压缩
+
+
+
+**使用配置文件**
+
+```shell
+diff-cli build --config
+```
+
+使用当前路径下compress.conf.js配置进行打包
+
+```
+module.exports = {
+  basePath: './dist',
+  baseUrl: 'http://active.wshareit.com/2020/covid/',
+  zipName: 'ddddddd',
+  version: '1.1.1',
+  getZip: true
+}
+```
+
+**生成配置文件**
+
+```
+diff-cli getConfig
+```
+
+使用此命令会在当前文件加下生成一份配置文件，然后使用  `diff-cli build --config`  进行打包
+
+
+
+***！！请务必检查！！***
+
+1.除插件底包外，项目中是否使用了其他CDN形式的插件
+
+2.生成的压缩包内容中不可有一级、二级文件夹，必须是处理后的所有资源
+
+3.生成的压缩包必须检查文件大小
 
 
 
 
 
-
+### 其他功能
 
 diff-cli使用了默认选项，可以更快的实现打包、差分、还原操作
 
-### 1.compress
+#### compress
 
 ```
 diff-cli compress
@@ -63,7 +104,7 @@ diff-cli compress
 
 
 
-### 2.diff
+#### diff
 
 默认目标文件夹 ./package
 
@@ -80,7 +121,7 @@ diff-cli diff
 
 
 
-### 3.patch
+#### patch
 
 默认目标文件夹 ./package
 
